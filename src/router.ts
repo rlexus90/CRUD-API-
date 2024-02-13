@@ -1,5 +1,11 @@
-import http from 'http'
+import http from 'http';
+import {sendAns} from './helpers/sendAns'
+import users from './data_base/users'
+import {workLog} from './helpers/workLog'
 
+
+ 
 export const router = (req:http.IncomingMessage,res:http.ServerResponse)=>{
-	res.end(JSON.stringify(req.headers))
+	sendAns(res,users,200);
+	workLog(req)
 }
