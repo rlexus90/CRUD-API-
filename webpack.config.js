@@ -33,17 +33,6 @@ const config = {
     ],
   },
   resolve: {
-    fallback: {
-      path: require.resolve('path-browserify'),
-      os: require.resolve('os-browserify/browser'),
-      crypto: require.resolve('crypto-browserify'),
-			events: require.resolve("events/"),
-			"http": require.resolve("stream-http") ,
-			"url": require.resolve("url/") ,
-			"stream": require.resolve("stream-browserify"),
-			
-
-    },
     extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
   },
 };
