@@ -7,7 +7,7 @@ module.exports = {
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
     ],
-		"ignorePatterns": ["webpack.config.js"],
+		"ignorePatterns": ["webpack.config.js", './dist'],
     "overrides": [
         {
             "env": {
