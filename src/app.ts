@@ -55,20 +55,24 @@ export class App {
     return http.createServer((req, res) => {
       let data = '';
 
-      req.on('data', (chunk) => {
-        data += chunk;
-      });
+      try {
+        req.on('data', (chunk) => {
+          data += chunk;
+        });
 
-      req.on('end', () => {
-        const event = this.eventEmiter.emit(
-          `${checkId(req.url)}:${req.method}`,
-          req,
-          res,
-          data
-        );
+        req.on('end', () => {
+          const event = this.eventEmiter.emit(
+            `${checkId(req.url)}:${req.method}`,
+            req,
+            res,
+            data
+          );
 
-        if (!event) sendAns(req,res, `Route: ${req.url} - Not found!`, 404);
-      });
+          if (!event) sendAns(req, res, `Route: ${req.url} - Not found!`, 404);
+        });
+      } catch {
+        sendAns(req, res, `Somesing went bad`, 500);
+      }
     });
   }
 }
