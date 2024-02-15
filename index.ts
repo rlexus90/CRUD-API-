@@ -1,3 +1,6 @@
 import {App} from './src/app'
 
-new App()
+const app=  new App();
+
+app.init();
+app.start();
