@@ -4,6 +4,7 @@ import { routeFn, routes } from './router';
 import { EventEmitter } from 'events';
 import { checkId } from './helpers/urlId';
 import { sendAns } from './helpers/sendAns';
+import {workLog} from './helpers/workLog'
 
 dotenv.config();
 
@@ -54,6 +55,8 @@ export class App {
   private createServer() {
     return http.createServer((req, res) => {
       let data = '';
+      workLog(req);
+
       req.on('data', (chunk) => {
         data += chunk;
       });
@@ -65,7 +68,7 @@ export class App {
           res,
           data
         );
-        console.log(`${checkId(req.url)}:${req.method}`);
+
         if (!event) sendAns(res, `Route: ${req.url} - Not found!`, 404);
       });
     });
