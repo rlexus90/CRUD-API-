@@ -42,7 +42,7 @@ export class App {
               res: http.ServerResponse,
               data: string
             ) => {
-              const handler: routeFn = endpoint.metod;
+              const handler: routeFn = endpoint[metod];
               handler(req, res, data);
             }
           );

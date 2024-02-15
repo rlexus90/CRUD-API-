@@ -1,6 +1,6 @@
 import http from 'http';
-
-
+import {getAll} from './handlers/getAll'
+ 
 export type routeFn = (req:http.IncomingMessage,res:http.ServerResponse,data:string)=>void;
 
 export interface IRoute {
@@ -13,7 +13,7 @@ const USERS_ID=  'api/users/{userId}';
 
 export const routes:Routes = {
 	[USERS]:{
-		GET: null,
+		GET: getAll,
 		POST: null,
 	},
 	[USERS_ID]:{
