@@ -12,12 +12,14 @@ export const getUser: routeFn = (
   const isValid = validateUid(id);
 
   if (!isValid) {
-    sendAns(res, 'Is not valid Uid', 400);
+    sendAns(req, res, 'Is not valid Uid', 400);
     return;
   }
 
   const user = users.find((el) => el.id === id);
-  user ? sendAns(res, user, 200) : sendAns(res, 'User not found', 404);
+  user
+    ? sendAns(req, res, user, 200)
+    : sendAns(req, res, 'User not found', 404);
 };
 
 const getId = (url: string) => {

@@ -7,5 +7,5 @@ export const getAll: routeFn = (
   req: http.IncomingMessage,
   res: http.ServerResponse
 ) => {
-  sendAns(res, users, 200);
+  sendAns(req, res, users, 200);
 };

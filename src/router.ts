@@ -1,6 +1,7 @@
 import http from 'http';
 import { getAll } from './handlers/getAll';
 import { getUser } from './handlers/getUser';
+import { addUser } from './handlers/addUser';
 
 export type routeFn = (
   req: http.IncomingMessage,
@@ -19,7 +20,7 @@ const USERS_ID = 'api/users/{userId}';
 export const routes: Routes = {
   [USERS]: {
     GET: getAll,
-    POST: null,
+    POST: addUser,
   },
   [USERS_ID]: {
     GET: getUser,
