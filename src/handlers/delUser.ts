@@ -2,10 +2,10 @@ import http from 'http';
 import { routeFn } from '../router';
 import users from '../data_base/users';
 import { sendAns } from '../helpers/sendAns';
+import { getId } from '../helpers/getId';
 import { validateUid } from '../helpers/validteUid';
-import {getId} from '../helpers/getId'
 
-export const getUser: routeFn = (
+export const delUser: routeFn = (
   req: http.IncomingMessage,
   res: http.ServerResponse
 ) => {
@@ -17,9 +17,12 @@ export const getUser: routeFn = (
     return;
   }
 
-  const user = users.find((el) => el.id === id);
-  user
-    ? sendAns(req, res, user, 200)
-    : sendAns(req, res, 'User not found', 404);
-};
+  const index = users.findIndex((user) => user.id === id);
 
+  if (index === -1) {
+    sendAns(req, res, 'User not found', 404);
+  } else {
+    users.splice(index, 1);
+    sendAns(req, res, '', 204);
+  }
+};
