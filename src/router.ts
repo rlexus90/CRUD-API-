@@ -3,6 +3,7 @@ import { getAll } from './handlers/getAll';
 import { getUser } from './handlers/getUser';
 import { addUser } from './handlers/addUser';
 import { delUser } from './handlers/delUser';
+import { updateUser } from './handlers/updateUser';
 
 export type routeFn = (
   req: http.IncomingMessage,
@@ -25,7 +26,7 @@ export const routes: Routes = {
   },
   [USERS_ID]: {
     GET: getUser,
-    PUT: null,
+    PUT: updateUser,
     DELETE: delUser,
   },
 };
