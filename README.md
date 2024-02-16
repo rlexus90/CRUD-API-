@@ -1,15 +1,35 @@
-# 🚀 Welcome to your new awesome project!
+Hello! 
 
-This project has been created using **webpack-cli**, you can now run
+This is CRUD API project
 
-```
-npm run build
-```
+ ## For first step - run
+ ```
+ npm i
+ ```
 
-or
+ ## To build project run 
+ ```
+ npm build:prod
+ ```
 
-```
-yarn build
-```
+ ## To start in dev 
+ ```
+ npm run start:dev
+ ```
 
-to bundle your application
+  ## To start in prod 
+ ```
+ npm run start:prod
+ ```
+
+  ## To start with loader balancer
+
+  ```
+  npm run start:multi
+  ```
+
+  ## To testing:
+  - 1 split console
+  - 2 run  ```npm run start:dev``` or ```npm run start:prod``` or ```  npm run start:multi```
+  in one console
+  - 3 run ```npm run test``` in another console
