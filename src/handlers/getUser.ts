@@ -1,6 +1,7 @@
 import http from 'http';
 import { routeFn } from '../router';
-import users from '../data_base/users';
+// import users from '../data_base/users';
+import DataBase from '../data_base/dataBase';
 import { sendAns } from '../helpers/sendAns';
 import { validateUid } from '../helpers/validteUid';
 import {getId} from '../helpers/getId'
@@ -17,7 +18,7 @@ export const getUser: routeFn = (
     return;
   }
 
-  const user = users.find((el) => el.id === id);
+  const user = DataBase.users.find((el) => el.id === id);
   user
     ? sendAns(req, res, user, 200)
     : sendAns(req, res, 'User not found', 404);

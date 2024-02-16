@@ -1,6 +1,7 @@
 import http from 'http';
 import { routeFn } from '../router';
-import users from '../data_base/users';
+// import users from '../data_base/users';
+import DataBase from '../data_base/dataBase';
 import { sendAns } from '../helpers/sendAns';
 import { getId } from '../helpers/getId';
 import { validateUid } from '../helpers/validteUid';
@@ -17,12 +18,12 @@ export const delUser: routeFn = (
     return;
   }
 
-  const index = users.findIndex((user) => user.id === id);
+  const index = DataBase.users.findIndex((user) => user.id === id);
 
   if (index === -1) {
     sendAns(req, res, 'User not found', 404);
   } else {
-    users.splice(index, 1);
+    DataBase.users.splice(index, 1);
     sendAns(req, res, '', 204);
   }
 };
