@@ -5,7 +5,7 @@ dotenv.config();
 
 const serverUrl = `http://localhost:${process.env.PORT}`;
 const user = { 
-username: 'test User',
+username: 'Test User',
 age: 30,
 hobbies:['testing'],
 }
@@ -22,13 +22,18 @@ expect(res2.status).toBe(201);
 const res3 = await req.get('/api/users');
 expect(res3.body.length).toBe(3);
 
-const res4 = await req.get('/api/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d');
-expect(res4.body.username).toBe('First User');
+let id = '';
 
-const res5 = await req.delete('/api/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d');
+res3.body.map((el)=>{
+  if(el.username === 'Test User') id = el.id;
+})
+const res4 = await req.get(`/api/users/${id}`);
+expect(res4.body.username).toBe('Test User');
+
+const res5 = await req.delete(`/api/users/${id}`);
 expect(res5.status).toBe(204);
 
-const res6 = await req.get('/api/users/9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d');
+const res6 = await req.get(`/api/users/${id}`);
 expect(res6.status).toBe(404);
 
 })
