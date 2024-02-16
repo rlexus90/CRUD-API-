@@ -6,5 +6,8 @@
     "target": "es5",
     "allowJs": true
   },
-  "files": ["src/app.ts"]
+  "files": ["src/app.ts"],
+	"exclude": [
+    "src/**/*.test.ts"
+  ]
 }
