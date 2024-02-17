@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "NodeNext",
+    "target": "es5",
+    "allowJs": true
+  },
+  "files": ["src/app.ts"],
+	"exclude": [
+    "src/**/*.test.ts"
+  ]
+}
