@@ -13,9 +13,23 @@ export default class DataBase {
 
     if(cluster.isPrimary){
       for (const work of Object.values(cluster.workers)){
-        work.send(data);
+        work.send(DataBase.users);
       }
     }
   }
 
+
+ static  push(data:User){
+  DataBase.users.push(data);
+
+  if(cluster.isWorker){
+    process.send(JSON.stringify(data));
+  }
+
+  if(cluster.isPrimary){
+    for (const work of Object.values(cluster.workers)){
+      work.send(DataBase.users);
+    }
+  }
+ }
 }

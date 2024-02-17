@@ -4,7 +4,10 @@ import { routeFn } from '../router';
 import DataBase from '../data_base/dataBase';
 import { sendAns } from '../helpers/sendAns';
 
-export const getAll: routeFn = (
+
+
+
+export const getAll: routeFn =async (
   req: http.IncomingMessage,
   res: http.ServerResponse
 ) => {

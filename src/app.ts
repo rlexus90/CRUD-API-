@@ -14,6 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 const withBalanser = process.argv.includes('--multi');
 
+
 export class App {
   private server: http.Server<
     typeof http.IncomingMessage,
@@ -69,7 +70,7 @@ export class App {
           data += chunk;
         });
 
-        req.on('end', () => {
+        req.on('end', async () => {
           const event = this.eventEmiter.emit(
             `${checkId(req.url)}:${req.method}`,
             req,
@@ -78,9 +79,9 @@ export class App {
           );
 
           if (!event) sendAns(req, res, `Route: ${req.url} - Not found!`, 404);
-          if (!cluster.isPrimary) {
-            process.send(JSON.stringify(DataBase.users));
-          }
+          // if (cluster.isWorker) {
+          //   process.send(JSON.stringify(DataBase.users));
+          // }
         });
       } catch {
         sendAns(req, res, `Somesing went bad`, 500);
@@ -111,7 +112,7 @@ export class App {
         cluster.fork({ PORT: port }); //emit new Worker
       });
 
-      cluster.on('message', (worker, msg) => DataBase.set(JSON.parse(msg)));
+      cluster.on('message', (worker, msg) => DataBase.push(JSON.parse(msg)));
 
       http
         .createServer((req, res) => {
