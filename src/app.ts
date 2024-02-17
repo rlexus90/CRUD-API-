@@ -78,9 +78,9 @@ export class App {
           );
 
           if (!event) sendAns(req, res, `Route: ${req.url} - Not found!`, 404);
-          if (!cluster.isPrimary) {
-            process.send(JSON.stringify(DataBase.users));
-          }
+          // if (!cluster.isPrimary) {
+          //   process.send(JSON.stringify(DataBase.users));
+          // }
         });
       } catch {
         sendAns(req, res, `Somesing went bad`, 500);
@@ -111,7 +111,7 @@ export class App {
         cluster.fork({ PORT: port }); //emit new Worker
       });
 
-      cluster.on('message', (worker, msg) => DataBase.set(JSON.parse(msg)));
+      cluster.on('message', (worker, msg) => DataBase.push(JSON.parse(msg)));
 
       http
         .createServer((req, res) => {

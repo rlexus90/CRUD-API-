@@ -14,7 +14,7 @@ export const addUser: routeFn = (
 if(  validateUser(user)){
 	const id = v4();
 	const newUser = {...user,id};
-	DataBase.users.push(newUser);
+	DataBase.push(newUser);
 sendAns(req, res,'User added',201);
 } else {
 	sendAns(req, res,'It is not valid User',400);
